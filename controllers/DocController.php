@@ -14,9 +14,19 @@ class Gephi_DocController extends Omeka_Controller_Action
     }
     
 
+    public function allAction()
+    {
+        ini_set('max_execution_time', 6000);
+        $this->notesAction();
+        $this->appendixPsAction();
+        $this->speechesAction();
+        die();
+        
+    }
     
     public function notesAction()
     {
+        ini_set('max_execution_time', 6000);
         $notes = get_db()->getTable('MlaTeiElement_CommentaryNote')->findAll();
         foreach($notes as $note) {
             $noteNode = $this->mlaTeiElementToNode($note);
@@ -39,7 +49,7 @@ class Gephi_DocController extends Omeka_Controller_Action
     
     public function appendixPsAction()
     {
-        
+        ini_set('max_execution_time', 6000);
         $notes = get_db()->getTable('MlaTeiElement_AppendixP')->findAll();
         foreach($notes as $note) {
             $noteNode = $this->mlaTeiElementToNode($note);
@@ -62,6 +72,7 @@ class Gephi_DocController extends Omeka_Controller_Action
     
     public function speechesAction()
     {
+        ini_set('max_execution_time', 6000);
         $speeches = get_db()->getTable('MlaTeiElement_Speech')->findAll();
         foreach($speeches as $speech) {
             $commentatorItems = mla_get_commentators_for_speech($speech);
